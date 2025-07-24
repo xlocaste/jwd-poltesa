@@ -32,7 +32,7 @@ class ArtikelController extends Controller
 
         Artikel::create([
             'judul' => $request->judul,
-            'file_path' => $path,
+            'file' => $path,
         ]);
 
         return redirect()->route('artikel.index')->with('success', 'Artikel berhasil ditambahkan.');

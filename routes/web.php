@@ -38,4 +38,22 @@ Route::prefix('/artikel')->name('artikel.')->group(function() {
     Route::get('/', [ArtikelController::class, 'index'])->name('index');
 });
 
+Route::get('/profile', function () {
+    return Inertia::render('Company/Profile');
+})->name('profile');
+
+Route::get('/visi-misi', function () {
+    return Inertia::render('Company/VisiMisi');
+})->name('visi-misi');
+
+Route::get('/produk', function () {
+    return Inertia::render('Company/Produk');
+})->name('produk');
+
+Route::get('/gallery-foto', fn() => Inertia::render('Company/GalleryFoto'))->name('gallery');
+Route::get('/daftar-klien', fn() => Inertia::render('Company/DaftarKlien'))->name('klien');
+Route::get('/kontak-kami', fn() => Inertia::render('Company/KontakKami'))->name('kontak');
+Route::get('/kegiatan', fn() => Inertia::render('Company/Kegiatan'))->name('kegiatan');
+Route::get('/tentang-kami', fn() => Inertia::render('Company/AboutUs'))->name('about');
+
 require __DIR__.'/auth.php';

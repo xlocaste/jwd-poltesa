@@ -1,78 +1,95 @@
-import { Link } from '@inertiajs/react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
+import { Link, usePage } from '@inertiajs/react';
 
 export default function Welcome() {
+    const user = usePage().props.auth.user;
+
     return (
-        <div className="min-h-screen grid grid-cols-5 border text-sm font-mono">
+        <div className="min-h-screen grid grid-cols-5 font-sans text-sm text-gray-700 bg-gray-50">
             {/* Sidebar */}
-            <aside className="col-span-1 border-r flex flex-col items-center p-4 space-y-6">
+            <aside className="col-span-1 bg-white border-r shadow-sm flex flex-col items-center p-6 space-y-8">
+                {/* Logo */}
                 <div className="text-center">
-                    <ApplicationLogo className="w-20 h-20 mx-auto" />
-                    <p className="mt-2 text-xs">Logo</p>
+                    <ApplicationLogo className="w-24 h-24 mx-auto mb-2" />
+                    <p className="text-gray-600 text-xs">Logo</p>
                 </div>
 
-                <nav className="text-sm space-y-2 text-left w-full px-4">
-                    <div className="font-semibold">Artikel</div>
-                    <ul className="list-disc list-inside ms-4">
-                        <li>Konsep Teknolgi Informasi</li>
-                        <li>Dst..</li>
-                    </ul>
+                {/* Menu */}
+                <nav className="w-full space-y-6 text-left">
+                    <div className="space-y-1 text-gray-600">
+                        <p className="hover:underline cursor-pointer">Event Galery</p>
+                        <p className="hover:underline cursor-pointer">Foto Klien</p>
+                        <p className="hover:underline cursor-pointer">Login Kami</p>
+                    </div>
 
-                    <div className="mt-4">Event Galery</div>
-                    <div>Foto Klien</div>
-                    <div>Login kami</div>
-
-                    <div className="mt-6">
-                        <Link href={route('login')} className="block">
-                            Sign in
-                        </Link>
-                        <Link href={route('register')} className="block">
-                            Sign up
-                        </Link>
+                    <div className="pt-4 border-t">
+                        {!user ? (
+                            <>
+                                <Link href={route('login')} className="block hover:underline text-blue-600">
+                                    Sign in
+                                </Link>
+                                <Link href={route('register')} className="block hover:underline text-blue-600">
+                                    Sign up
+                                </Link>
+                            </>
+                        ) : (
+                            <Link
+                                href={route('logout')}
+                                method="post"
+                                as="button"
+                                className="mt-2 text-red-600 hover:underline"
+                            >
+                                Log Out
+                            </Link>
+                        )}
                     </div>
                 </nav>
             </aside>
 
-            {/* Main Layout */}
+            {/* Main Content */}
             <div className="col-span-4 flex flex-col">
                 {/* Header */}
-                <header className="border-b p-4 text-center">
-                    <h1 className="text-4xl font-extrabold text-gray-700 tracking-wide">
-                        Nama perusahaan
+                <header className="bg-white border-b shadow p-4 text-center">
+                    <h1 className="text-4xl font-bold text-gray-800 tracking-wide uppercase">
+                        Selamat Datang
                     </h1>
                 </header>
 
                 {/* Horizontal Navigation */}
-                <nav className="border-b flex space-x-4 px-6 py-2 text-sm">
-                    <Link href="/" className="hover:underline">
+                <nav className="bg-gray-100 border-b px-8 py-3 flex space-x-6 text-sm font-medium">
+                    <Link href="/" className="text-blue-700 underline font-semibold">
                         Home
                     </Link>
-                    <Link href="#" className="hover:underline">
+                    <Link href="#" className="text-gray-700 hover:text-blue-600">
                         Profile
                     </Link>
-                    <Link href="#" className="hover:underline">
-                        Visi dan
+                    <Link href="#" className="text-gray-700 hover:text-blue-600">
+                        Visi Misi
                     </Link>
-                    <Link href="#" className="hover:underline">
-                        Produk kami
+                    <Link href="#" className="text-gray-700 hover:text-blue-600">
+                        Produk Kami
                     </Link>
-                    <Link href="#" className="hover:underline">
+                    <Link href="#" className="text-gray-700 hover:text-blue-600">
                         Kontak
                     </Link>
-                    <Link href="#" className="font-bold underline">
-                        About us
+                    <Link href="#" className="text-gray-700 hover:text-blue-600">
+                        About Us
                     </Link>
                 </nav>
 
                 {/* Page Content */}
-                <main className="flex-1 p-6 bg-white">
-                    {/* Konten utama bisa ditambahkan di sini */}
-                    <p className="text-gray-500">Selamat datang di halaman utama.</p>
+                <main className="flex-1 p-6 bg-white rounded shadow-inner">
+                    <h2 className="text-2xl font-semibold mb-4">Tentang Kami</h2>
+                    <p className="text-gray-700 leading-relaxed">
+                        Selamat datang di website resmi kami. Kami menyediakan berbagai layanan dan informasi
+                        tentang kegiatan, produk, serta layanan terbaik yang kami miliki. Silakan jelajahi menu
+                        di atas untuk mengetahui lebih lanjut.
+                    </p>
                 </main>
 
                 {/* Footer */}
-                <footer className="text-right px-6 py-2 text-xs text-gray-500 border-t">
-                    Design by : ....
+                <footer className="text-right px-6 py-4 text-xs text-gray-400 border-t">
+                    Design by: ...
                 </footer>
             </div>
         </div>

@@ -23,7 +23,7 @@ export default function ArtikelList({ artikel, auth }) {
                             <li key={item.id} className="border p-4 rounded hover:shadow">
                                 <div className="font-semibold text-lg text-gray-800">{item.judul}</div>
                                 <a
-                                    href={`/storage/${item.file_path}`}
+                                    href={`/storage/${item.file}`}
                                     target="_blank"
                                     className="text-blue-600 hover:underline text-sm"
                                     rel="noopener noreferrer"

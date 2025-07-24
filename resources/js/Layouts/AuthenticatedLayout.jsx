@@ -7,22 +7,22 @@ export default function AuthenticatedLayout({ children }) {
     const [artikelOpen, setArtikelOpen] = useState(false);
 
     return (
-        <div className="min-h-screen grid grid-cols-5 font-sans text-sm text-gray-700 bg-gray-50">
+        <div className="min-h-screen grid grid-cols-5 bg-gray-50 text-gray-700 text-sm font-sans">
             {/* Sidebar */}
             <aside className="col-span-1 bg-white border-r shadow-sm flex flex-col items-center p-6 space-y-8">
                 {/* Logo */}
                 <div className="text-center">
                     <ApplicationLogo className="w-24 h-24 mx-auto mb-2" />
-                    <p className="text-gray-600 text-xs">Logo</p>
+                    <p className="text-gray-600 text-xs">Teknokita.id</p>
                 </div>
 
-                {/* Navigation Menu */}
+                {/* Sidebar Menu */}
                 <nav className="w-full space-y-6 text-left">
                     {/* Artikel Dropdown */}
-                    <div className="w-full">
+                    <div>
                         <button
                             onClick={() => setArtikelOpen(!artikelOpen)}
-                            className="w-full flex items-center justify-between text-gray-800 font-semibold mb-1 hover:text-blue-600"
+                            className="w-full flex items-center justify-between font-semibold text-gray-800 hover:text-blue-600"
                         >
                             <span>Artikel</span>
                             <svg
@@ -30,38 +30,36 @@ export default function AuthenticatedLayout({ children }) {
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
                             >
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                             </svg>
                         </button>
-
                         {artikelOpen && (
-                            <ul className="list-disc list-inside text-gray-600 ms-4 space-y-1">
-                                <Link href={route('artikel.index')}>Artikel</Link>
-                                <li>Manajemen Data</li>
-                                <li>Keamanan Jaringan</li>
-                                <li>Dst..</li>
+                            <ul className="mt-2 ml-4 space-y-1 list-disc list-inside text-gray-600">
+                                <li><Link href={route('artikel.index')} className="hover:underline">Daftar Artikel</Link></li>
+                                <li><Link href={route('artikel.create')} className="hover:underline">Tambah Artikel</Link></li>
+                                <li><span className="text-gray-400">Manajemen Data</span></li>
+                                <li><span className="text-gray-400">Keamanan Jaringan</span></li>
                             </ul>
                         )}
                     </div>
 
                     {/* Static Links */}
                     <div className="space-y-1 text-gray-600">
-                        <p className="hover:underline cursor-pointer">Event Galery</p>
-                        <p className="hover:underline cursor-pointer">Foto Klien</p>
-                        <p className="hover:underline cursor-pointer">Login kami</p>
+                        <Link href="/galeri-event" className="hover:underline block">Galeri Event</Link>
+                        <Link href="/klien-foto" className="hover:underline block">Foto Klien</Link>
+                        <Link href="/login-info" className="hover:underline block">Login Kami</Link>
                     </div>
 
-                    {/* Auth Section */}
+                    {/* Authentication */}
                     <div className="pt-4 border-t">
                         {!user ? (
                             <>
-                                <Link href={route('login')} className="block hover:underline text-blue-600">
-                                    Sign in
+                                <Link href={route('login')} className="block text-blue-600 hover:underline">
+                                    Sign In
                                 </Link>
-                                <Link href={route('register')} className="block hover:underline text-blue-600">
-                                    Sign up
+                                <Link href={route('register')} className="block text-blue-600 hover:underline">
+                                    Sign Up
                                 </Link>
                             </>
                         ) : (
@@ -78,45 +76,35 @@ export default function AuthenticatedLayout({ children }) {
                 </nav>
             </aside>
 
-            {/* Main Content */}
-            <div className="col-span-4 flex flex-col">
+            {/* Main Content Area */}
+            <div className="col-span-4 flex flex-col min-h-screen">
                 {/* Header */}
                 <header className="bg-white border-b shadow p-4 text-center">
-                    <h1 className="text-4xl font-bold text-gray-800 tracking-wide uppercase">
-                        Nama Perusahaan
+                    <h1 className="text-3xl font-bold text-gray-800 uppercase tracking-wide">
+                        Teknokita.id
                     </h1>
                 </header>
 
                 {/* Horizontal Navigation */}
-                <nav className="bg-gray-100 border-b px-8 py-3 flex space-x-6 text-sm font-medium">
-                    <Link href="/" className="text-gray-700 hover:text-blue-600">
-                        Home
-                    </Link>
-                    <Link href="#" className="text-gray-700 hover:text-blue-600">
-                        Profile
-                    </Link>
-                    <Link href="#" className="text-gray-700 hover:text-blue-600">
-                        Visi dan
-                    </Link>
-                    <Link href="#" className="text-gray-700 hover:text-blue-600">
-                        Produk kami
-                    </Link>
-                    <Link href="#" className="text-gray-700 hover:text-blue-600">
-                        Kontak
-                    </Link>
-                    <Link href="#" className="text-blue-700 underline font-semibold">
-                        About us
-                    </Link>
+                <nav className="bg-gray-100 border-b px-8 py-3 flex flex-wrap gap-4 text-sm font-medium">
+                    <Link href="/dashboard" className="hover:text-blue-600">Home</Link>
+                    <Link href="/profile" className="hover:text-blue-600">Profil</Link>
+                    <Link href="/visi-misi" className="hover:text-blue-600">Visi Misi</Link>
+                    <Link href="/produk" className="hover:text-blue-600">Produk</Link>
+                    <Link href="/gallery-foto" className="hover:text-blue-600">Galeri</Link>
+                    <Link href="/daftar-klien" className="hover:text-blue-600">Klien</Link>
+                    <Link href="/kontak-kami" className="hover:text-blue-600">Kontak</Link>
+                    <Link href="/tentang-kami" className="text-blue-700 underline font-semibold">Tentang Kami</Link>
                 </nav>
 
                 {/* Page Content */}
-                <main className="flex-1 p-6 bg-white rounded shadow-inner">
+                <main className="flex-1 p-6 bg-white shadow-inner overflow-y-auto">
                     {children}
                 </main>
 
                 {/* Footer */}
                 <footer className="text-right px-6 py-4 text-xs text-gray-400 border-t">
-                    Design by : ...
+                    Design by: Teknokita.id
                 </footer>
             </div>
         </div>
