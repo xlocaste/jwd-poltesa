@@ -55,5 +55,7 @@ Route::get('/daftar-klien', fn() => Inertia::render('Company/DaftarKlien'))->nam
 Route::get('/kontak-kami', fn() => Inertia::render('Company/KontakKami'))->name('kontak');
 Route::get('/kegiatan', fn() => Inertia::render('Company/Kegiatan'))->name('kegiatan');
 Route::get('/tentang-kami', fn() => Inertia::render('Company/AboutUs'))->name('about');
+Route::get('/galeri-event', fn () => Inertia::render('GaleriEvent'))->name('galeri.event');
+Route::get('/foto-klien', fn () => Inertia::render('GaleriKlien'))->name('galeri.klien');
 
 require __DIR__.'/auth.php';

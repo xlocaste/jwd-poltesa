@@ -38,17 +38,14 @@ export default function AuthenticatedLayout({ children }) {
                             <ul className="mt-2 ml-4 space-y-1 list-disc list-inside text-gray-600">
                                 <li><Link href={route('artikel.index')} className="hover:underline">Daftar Artikel</Link></li>
                                 <li><Link href={route('artikel.create')} className="hover:underline">Tambah Artikel</Link></li>
-                                <li><span className="text-gray-400">Manajemen Data</span></li>
-                                <li><span className="text-gray-400">Keamanan Jaringan</span></li>
                             </ul>
                         )}
                     </div>
 
                     {/* Static Links */}
                     <div className="space-y-1 text-gray-600">
-                        <Link href="/galeri-event" className="hover:underline block">Galeri Event</Link>
-                        <Link href="/klien-foto" className="hover:underline block">Foto Klien</Link>
-                        <Link href="/login-info" className="hover:underline block">Login Kami</Link>
+                        <Link href={route('galeri.event')} className="hover:underline block">Galeri Event</Link>
+                        <Link href={route('galeri.klien')} className="hover:underline block">Foto Klien</Link>
                     </div>
 
                     {/* Authentication */}
@@ -104,7 +101,7 @@ export default function AuthenticatedLayout({ children }) {
 
                 {/* Footer */}
                 <footer className="text-right px-6 py-4 text-xs text-gray-400 border-t">
-                    Design by: Teknokita.id
+                    Design by: Irfandi
                 </footer>
             </div>
         </div>
