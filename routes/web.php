@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::prefix('/artikel')->name('artikel.')->group(function() {
+    Route::group(['middleware' => ['auth']], function() {
+        Route::get('/create', [ArtikelController::class, 'create'])->name('create');
+        Route::post('/', [ArtikelController::class, 'store'])->name('store');
+        Route::put('/{artikelId}', [ArtikelController::class, 'update'])->name('update');
+        Route::delete('/{artikelId}', [ArtikelController::class, 'destroy'])->name('destroy');
+        Route::get('/{artikelId}/edit', [ArtikelController::class, 'edit'])->name('edit');
+        Route::get('/{artikelId}/detail', [ArtikelController::class, 'show'])->name('show');
+        Route::get('/search', [ArtikelController::class, 'search'])->name('search');
+    });
+    Route::get('/', [ArtikelController::class, 'index'])->name('index');
 });
 
 require __DIR__.'/auth.php';

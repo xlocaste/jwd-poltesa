@@ -38,7 +38,7 @@ export default function AuthenticatedLayout({ children }) {
 
                         {artikelOpen && (
                             <ul className="list-disc list-inside text-gray-600 ms-4 space-y-1">
-                                <li>Konsep Teknologi Informasi</li>
+                                <Link href={route('artikel.index')}>Artikel</Link>
                                 <li>Manajemen Data</li>
                                 <li>Keamanan Jaringan</li>
                                 <li>Dst..</li>
